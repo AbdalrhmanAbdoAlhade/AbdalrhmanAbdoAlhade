@@ -23,7 +23,7 @@ export function WhatsAppFloatingButton() {
       target="_blank"
       rel="noreferrer"
       aria-label={t("contact_whatsapp")}
-      className="fixed bottom-6 end-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110"
+      className="fixed bottom-4 end-4 z-50 flex h-14 w-14 min-h-[48px] min-w-[48px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-110 active:scale-95 sm:bottom-6 sm:end-6"
     >
       <WhatsAppIcon className="h-7 w-7" />
     </a>

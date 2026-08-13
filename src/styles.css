@@ -160,6 +160,7 @@
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   ::selection {
@@ -200,5 +201,114 @@
 
 @utility animate-float {
   animation: float-slow 7s ease-in-out infinite;
+}
+
+/* Responsive utilities for better mobile design */
+/* Touch target sizing - ensures minimum 44x48px for touch accessibility */
+  @utility touch-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  /* Improved focus states for accessibility */
+  @utility focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  /* Better scroll behavior */
+  @utility scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* Improved link styles */
+  @utility link-hover {
+    @apply transition-colors duration-200 hover:text-primary;
+  }
+
+  /* Responsive padding for sections */
+  @utility section-px {
+    @apply px-4 sm:px-5 lg:px-6;
+  }
+
+  @utility section-py {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  /* Improved button base styles */
+  @utility btn-base {
+    @apply inline-flex items-center justify-center font-semibold transition-all duration-200 rounded-full focus-ring;
+  }
+
+  @utility btn-sm {
+    @apply btn-base min-h-[36px] text-xs px-3 py-1.5 sm:px-4 sm:py-2 sm:text-sm;
+  }
+
+  @utility btn-md {
+    @apply btn-base min-h-[40px] text-xs px-4 py-2 sm:px-5 sm:py-2.5 sm:text-sm;
+  }
+
+  @utility btn-lg {
+    @apply btn-base min-h-[44px] text-sm px-5 py-2.5 sm:px-6 sm:py-3 sm:text-base;
+  }
+
+  /* Responsive card styles */
+  @utility card-responsive {
+    @apply rounded-2xl p-5 sm:rounded-3xl sm:p-6;
+  }
+
+  /* Typography responsive scaling */
+  @utility text-h1 {
+    @apply text-3xl font-extrabold sm:text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  @utility text-h2 {
+    @apply text-2xl font-extrabold sm:text-3xl md:text-4xl;
+  }
+
+  @utility text-h3 {
+    @apply text-xl font-bold sm:text-2xl;
+  }
+
+  /* Mobile-first gap utilities */
+  @utility gap-responsive-x {
+    @apply gap-3 sm:gap-4 lg:gap-6;
+  }
+
+  @utility gap-responsive-y {
+    @apply gap-3 sm:gap-4 lg:gap-6;
+  }
+
+/* Enable smooth scrolling globally */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve touch interactions on mobile */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover effects on touch devices */
+  button:hover,
+  a:hover {
+    filter: none !important;
+  }
+
+  /* Add active state feedback for touch */
+  button:active,
+  a:active {
+    opacity: 0.8;
+  }
+}
+
+/* Improve readability on larger screens */
+@media (min-width: 1280px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+/* Better text rendering on mobile */
+@media (max-width: 640px) {
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
 }
 
