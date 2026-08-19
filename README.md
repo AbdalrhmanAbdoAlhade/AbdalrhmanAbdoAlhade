@@ -78,14 +78,14 @@ I architect and maintain scalable back-end systems with deep experience in high-
 
 <div align="center">
 
-<img height="160" src="https://github-readme-stats.vercel.app/api?username=AbdalrhmanAbdoAlhade&show_icons=true&theme=github_dark&hide_border=true&count_private=true&include_all_commits=true" />
-<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=AbdalrhmanAbdoAlhade&layout=compact&theme=github_dark&hide_border=true&langs_count=6" />
+<img height="160" src="https://github-readme-stats.vercel.app/api?username=AbdalrhmanAbdoAlhade&show_icons=true&theme=github_dark&hide_border=true&count_private=true&include_all_commits=true&cache_seconds=86400" />
+<img height="160" src="https://github-readme-stats.vercel.app/api/top-langs/?username=AbdalrhmanAbdoAlhade&layout=compact&theme=github_dark&hide_border=true&langs_count=6&cache_seconds=86400" />
 
 </div>
 
 <div align="center">
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=AbdalrhmanAbdoAlhade&theme=github-dark-blue&hide_border=true" />
+<img src="https://streak-stats.demolab.com/?user=AbdalrhmanAbdoAlhade&theme=github-dark-blue&hide_border=true" />
 
 </div>
 
