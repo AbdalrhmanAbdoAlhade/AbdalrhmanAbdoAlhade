@@ -7,7 +7,7 @@
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://abdalrhman-abdo-alhade.vercel.app/)
 [![Email](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:abdo.king22227@gmail.com)
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)]((https://github.com/AbdalrhmanAbdoAlhade))
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AbdalrhmanAbdoAlhade)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/201023402756)
 
 ![Profile Views](https://komarev.com/ghpvc/?username=AbdalrhmanAbdoAlhade&color=0e75b6&style=flat&label=Profile+Views)
@@ -66,11 +66,11 @@ I architect and maintain scalable back-end systems with deep experience in high-
 
 | Project | Description | Stack |
 |---|---|---|
-| **[ALAHRAM-EG-APP](https://github.com/abdalrhman-abdalnabe)** | E-commerce system with WhatsApp Business automation | Laravel · WhatsApp API |
-| **[Mawaed Al-Sultan](https://github.com/abdalrhman-abdalnabe)** | Luxury restaurant platform with AI smart chef | Laravel · Gemini AI |
-| **[PlayPro System](https://github.com/abdalrhman-abdalnabe)** | Sports academies & courts management system | Go/Gin · PostgreSQL |
-| **[Educational API](https://github.com/abdalrhman-abdalnabe)** | Large-scale LMS for universities (multi-tenant) | Laravel |
-| **[SmartHome Backend](https://github.com/abdalrhman-abdalnabe)** | Real-time smart home control system | Go · MQTT · WebSockets |
+| **[ALAHRAM-EG-APP](https://github.com/AbdalrhmanAbdoAlhade)** | E-commerce system with WhatsApp Business automation | Laravel · WhatsApp API |
+| **[Mawaed Al-Sultan](https://github.com/AbdalrhmanAbdoAlhade)** | Luxury restaurant platform with AI smart chef | Laravel · Gemini AI |
+| **[PlayPro System](https://github.com/AbdalrhmanAbdoAlhade)** | Sports academies & courts management system | Go/Gin · PostgreSQL |
+| **[Educational API](https://github.com/AbdalrhmanAbdoAlhade)** | Large-scale LMS for universities (multi-tenant) | Laravel |
+| **[SmartHome Backend](https://github.com/AbdalrhmanAbdoAlhade)** | Real-time smart home control system | Go · MQTT · WebSockets |
 
 ---
 
