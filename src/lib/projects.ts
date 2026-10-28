@@ -1,4 +1,4 @@
-export const API_BASE = "https://api-faz.rouqy-jewellery.com";
+export const API_BASE = "https://api.zh-innovation.tech";
 
 export type ApiProject = {
   id: number | string;
