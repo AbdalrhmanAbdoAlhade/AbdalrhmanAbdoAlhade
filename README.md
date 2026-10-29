@@ -89,13 +89,13 @@ Gemini AI & LangChain integrated into real systems
 
 ## 🚀 Selected Projects
 
-| Project | What it does | Stack |
-|:--|:--|:--|
-| 🛒 **[ALAHRAM-EG-APP](https://github.com/AbdalrhmanAbdoAlhade)** | E-commerce system with WhatsApp Business automation | `Laravel` `WhatsApp API` |
-| 🍽️ **[Mawaed Al-Sultan](https://github.com/AbdalrhmanAbdoAlhade)** | Luxury restaurant platform with an AI smart chef | `Laravel` `Gemini AI` |
-| 🏟️ **[PlayPro System](https://github.com/AbdalrhmanAbdoAlhade)** | Sports academies & courts management | `Go/Gin` `PostgreSQL` |
-| 🎓 **[Educational API](https://github.com/AbdalrhmanAbdoAlhade)** | Large-scale multi-tenant LMS for universities | `Laravel` |
-| 🏠 **[SmartHome Backend](https://github.com/AbdalrhmanAbdoAlhade)** | Real-time smart home control | `Go` `MQTT` `WebSockets` |
+| Project                                                             | What it does                                        | Stack                    |
+| :------------------------------------------------------------------ | :-------------------------------------------------- | :----------------------- |
+| 🛒 **[ALAHRAM-EG-APP](https://github.com/AbdalrhmanAbdoAlhade)**    | E-commerce system with WhatsApp Business automation | `Laravel` `WhatsApp API` |
+| 🍽️ **[Mawaed Al-Sultan](https://github.com/AbdalrhmanAbdoAlhade)**  | Luxury restaurant platform with an AI smart chef    | `Laravel` `Gemini AI`    |
+| 🏟️ **[PlayPro System](https://github.com/AbdalrhmanAbdoAlhade)**    | Sports academies & courts management                | `Go/Gin` `PostgreSQL`    |
+| 🎓 **[Educational API](https://github.com/AbdalrhmanAbdoAlhade)**   | Large-scale multi-tenant LMS for universities       | `Laravel`                |
+| 🏠 **[SmartHome Backend](https://github.com/AbdalrhmanAbdoAlhade)** | Real-time smart home control                        | `Go` `MQTT` `WebSockets` |
 
 ---
 

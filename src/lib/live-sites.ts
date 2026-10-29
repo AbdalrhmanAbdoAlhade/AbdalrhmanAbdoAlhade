@@ -97,11 +97,12 @@ export const liveSites: LiveSite[] = LIVE_ECOSYSTEM.map((entry) => {
   const host = entry.split("/")[0] ?? entry;
   let label: string = host;
   if (isApp) {
-    label = APP_LABELS[entry] ?? (() => {
-      const id = /id=([^&]+)/.exec(entry)?.[1];
-      return id ? (id.split(".").pop() ?? id) : "";
-    })();
+    label =
+      APP_LABELS[entry] ??
+      (() => {
+        const id = /id=([^&]+)/.exec(entry)?.[1];
+        return id ? (id.split(".").pop() ?? id) : "";
+      })();
   }
   return { url: `https://${entry}`, label, isApp, host };
 });
-

@@ -1,234 +1,341 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { SITE_CONFIG } from "@/config/site-config";
 
 export type Lang = "ar" | "en";
 export type Theme = "dark" | "light";
 
-const dict = {
+export const dict = {
   ar: {
+    // Navigation
     nav_about: "نبذة",
     nav_skills: "المهارات",
     nav_architecture: "المعمارية",
     nav_projects: "المشاريع",
+    nav_timeline: "رحلة العمل",
     nav_sites: "المواقع",
     nav_contact: "تواصل",
-    hero_badge: "متاح لمشاريع جديدة",
-    hero_name: "عبدالرحمن عبده",
-    hero_role: "Back-End Developer",
-    hero_desc:
-      "أبني واجهات برمجية آمنة وقابلة للتوسع باستخدام PHP (Laravel) و Go، وأدير قواعد بيانات معقدة وتكاملات خارجية لأنظمة SaaS ومنصات التجارة الإلكترونية.",
-    hero_cta1: "استعرض المشاريع",
-    hero_cta2: "حسابي على GitHub",
+
+    // Hero
+    hero_badge: "متاح لمشاريع ومنصات جديدة",
+    hero_name: SITE_CONFIG.name.ar,
+    hero_role: SITE_CONFIG.role.ar,
+    hero_desc: SITE_CONFIG.tagline.ar,
+    hero_cta_projects: "استعرض المشاريع",
+    hero_cta_whatsapp: "واتساب مباشر",
+    hero_cta_github: "حساب GitHub",
+
+    // Stats
     stat_projects: "مشروع منجز",
     stat_years: "سنوات خبرة",
     stat_commit: "التزام بالتسليم",
+    stat_requests: "طلب شهرياً معالج",
+
+    // Terminal
+    terminal_title: "abdalrhman@fullstack:~$",
+    terminal_status: "متصل بالإنتاج — جاهز للعمل",
+
+    // About
+    about_kicker: "About Me",
     about_title: "نبذة",
     about_title_hl: "عني",
-    about_desc:
-      "مطور Back-End أركّز على تصميم أنظمة نظيفة المعمارية وسهلة الصيانة: بنية متعددة المستأجرين، صلاحيات دقيقة لكل دور، دورات حياة للطلبات والعمليات، وتقارير ولوحات تحكم. أعمل على منصات تجارة إلكترونية وتوصيل وتعليم وفوترة إلكترونية مرتبطة بمتطلبات جهات رسمية.",
-    skills_title: "المهارات",
+    about_desc: SITE_CONFIG.bio.ar,
+
+    // Skills
+    skills_kicker: "Tech Stack",
+    skills_title: "الترسانة",
     skills_title_hl: "التقنية",
-    skill_php: "PHP / Laravel",
-    skill_php_d: "REST APIs، Queues، أنظمة متعددة المستأجرين",
-    skill_go: "Golang",
-    skill_go_d: "خدمات عالية الأداء ومعالجة متزامنة",
-    skill_db: "قواعد البيانات",
-    skill_db_d: "MySQL / PostgreSQL / Redis وتحسين الاستعلامات",
-    skill_sec: "الأمان",
-    skill_sec_d: "JWT، صلاحيات دقيقة، حماية البيانات",
-    skill_ops: "البنية والنشر",
-    skill_ops_d: "Docker، CI/CD، مراقبة وأداء",
-    skill_int: "التكاملات",
-    skill_int_d: "الدفع، ZATCA، الإشعارات، خرائط ورسائل",
-    arch_kicker: "System Design",
+    skills_desc:
+      "تطوير Full-Stack متكامل يجمع بين قوة واستقرار الأنظمة الخلفية وسلاسة وتفاعلية الواجهات الأمامية.",
+    arch_skills_frontend: "الواجهات الأمامية (Frontend)",
+    arch_skills_languages: "لغات البرمجة (Languages)",
+    arch_skills_frameworks: "أطر العمل والـ APIs",
+    arch_skills_databases: "قواعد البيانات والـ Caching",
+    arch_skills_devops: "البنية السحابية والنشر (DevOps)",
+
+    // Architecture
+    arch_kicker: "System Design & Architecture",
     arch_title: "المعمارية التقنية",
     arch_title_hl: "والتصميم الهيكلي",
     arch_desc:
       "تصميم وبناء أنظمة برمجية متقدمة لضمان عزل البيانات، التوافرية العالية، والأمان عبر كافة المشاريع الحية (BillPro SA, Lawyers SaaS, Souqna, UMQ).",
-    arch_pillar_tenant: "معمارية متعددة المستأجرين",
+    arch_copy_snippet: "نسخ الكود",
+    arch_copied: "تم النسخ!",
+    arch_pillar_tenant: "معمارية متعددة المستأجرين (Multi-Tenancy)",
     arch_pillar_tenant_d:
-      "تطبيق عزل المحتوى والبيانات مع ربط النطاقات الفرعية لكل تاجر/مكتب، بيئة مستقلة لكل شركة ضمن نظام سحابي واحد.",
+      "تطبيق عزل المحتوى وقواعد البيانات مع ربط النطاقات الفرعية لكل شركة/مكتب، بيئة مستقلة تماماً ضمن نظام سحابي موحد ومتوافق مع هيئة الزكاة.",
     arch_pillar_rbac: "الصلاحيات والـ RBAC (5 أدوار)",
     arch_pillar_rbac_d:
       "نظام أمان صارم ينظم العمل بين الأدوار الخمسة مع فحص Sanctum عند كل طلب API في أقل من دقيقة.",
-    arch_pillar_api: "واجهات REST APIs للجوال",
+    arch_pillar_api: "واجهات REST APIs للجوال والويب",
     arch_pillar_api_d:
-      "Backend جاهز للإنتاج يربط QuickCart, UMQ, FAZ, Souqna مع Firebase، GPS، والمحافظ الإلكترونية.",
-    arch_pillar_payouts: "المحاسبة والتسويات Payouts",
+      "Backend عالي الكفاءة يربط تطبيقات الجوال والويب مع Firebase، وتتبع GPS، والمحافظ الرقمية.",
+    arch_pillar_payouts: "المحاسبة والتسويات (Ledger & Payouts)",
     arch_pillar_payouts_d:
       "محرك القيد المزدوج، شجرة الحسابات، قيود اليومية الموازنة آليًا، وحساب عمولات المتاجر وتوليد طلبات التحويل.",
-    arch_arsenal_title: "الترسانة",
-    arch_arsenal_hl: "التقنية والمهارات",
-    arch_arsenal_desc:
-      "لغات البرمجة، أطر العمل، قواعد البيانات، وأدوات البنية التحتية الخاصة بتطوير الـ Back-End.",
-    arch_skills_languages: "لغات البرمجة",
-    arch_skills_frameworks: "أطر العمل & APIs",
-    arch_skills_databases: "قواعد البيانات",
-    arch_skills_devops: "البنية التحتية & المعمارية",
-    arch_integrations: "الربط مع الخدمات الخارجية",
-    arch_integrations_d: "تكامل مع أنواع الخدمات وليس مزودًا واحدًا — قابل للتوسع لأي بوابة أو مزود.",
-    int_payment: "دفع إلكتروني",
-    int_shipping: "شحن وتوصيل",
-    int_sms: "رسائل SMS",
-    int_notifications: "إشعارات فورية",
-    int_maps: "خرائط وGPS",
-    int_einvoicing: "فوترة إلكترونية",
-    int_api: "ربط APIs خارجية",
+    arch_arsenal_title: "المهارات",
+    arch_arsenal_hl: "حسب التخصص والنسب",
+    arch_arsenal_desc: "تقييم واقعي لمستويات الإتقان البرمجي والخبرة العملية في الإنتاج.",
+    arch_integrations: "التكاملات والربط الخارجي",
+    arch_integrations_d: "تكامل مدروس مع بوابات الدفع، الشحن، الفوترة، والإشعارات اللحظية.",
+    int_payment: "دفع إلكتروني (EdfaPay / Mada)",
+    int_shipping: "شحن وتوصيل (Aramex / SMSA / Naqel)",
+    int_sms: "رسائل SMS وتوثيق OTP",
+    int_notifications: "إشعارات فورية (Firebase FCM)",
+    int_maps: "خرائط وتتبع (Google Maps / GPS)",
+    int_einvoicing: "فوترة إلكترونية (ZATCA المرحلة الثانية)",
+    int_api: "ربط APIs وبوابات خارجية",
+
+    // Roles
     role_admin: "Admin (مدير)",
     role_staff: "Staff (موظف)",
     role_client: "Client (عميل)",
     role_lawyer: "Lawyer (محامي)",
     role_law_firm: "Law Firm (مكتب)",
-    projects_kicker: "Portfolio",
-    projects_title: "أحدث",
-    projects_title_hl: "المشاريع",
-    projects_desc: "منصات ويب وتطبيقات موبايل بأنظمة خلفية قوية وقابلة للتوسع.",
-    projects_show_more: "عرض المزيد",
+
+    // Projects
+    projects_kicker: "Portfolio & Case Studies",
+    projects_title: "المشاريع",
+    projects_title_hl: "والمنصات المنفذة",
+    projects_desc: "منصات وتطبيقات واقعية تم بناؤها بمعايير الإنتاج العالمية وربطها بالكامل.",
+    projects_search: "ابحث في المشاريع، التقنيات (Laravel, ZATCA, RBAC)...",
+    projects_filter_all: "الكل",
+    projects_filter_web: "ويب SaaS",
+    projects_filter_mobile: "موبايل",
+    projects_sort_newest: "الأحدث",
+    projects_sort_oldest: "الأقدم",
+    projects_sort_title: "أبجدياً",
+    projects_featured: "منصات مميزة (Featured)",
+    projects_all_list: "باقي المشاريع والأنظمة",
+    projects_show_more: "عرض المزيد من المشاريع",
     projects_show_less: "عرض أقل",
-    all: "الكل",
-    live_preview: "معاينة مباشرة",
-    code: "الكود",
-    load_error: "تعذّر تحميل المشاريع الآن.",
+    projects_no_results: "لم يتم العثور على مشاريع مطابقة للبحث.",
+    projects_clear_filters: "إلغاء الفلاتر",
+    project_modal_details: "تفاصيل المشروع الكاملة",
+    project_modal_tech: "التقنيات المستخدمة:",
+    project_modal_prev: "السابق",
+    project_modal_next: "التالي",
+    project_modal_close: "إغلاق",
+    live_preview: "زيارة المنصة",
+    google_play: "Google Play",
+    code: "الكود المصدري",
+    details: "التفاصيل",
+    load_error: "تعذّر تحميل المشاريع من الخادم حالياً.",
     retry: "إعادة المحاولة",
+
+    // Timeline / Work Journey
+    timeline_kicker: "Work Journey & Milestones",
+    timeline_title: "رحلة",
+    timeline_title_hl: "العمل والخبرة",
+    timeline_desc:
+      "تسلسل زمني لأبرز المحطات وتطور الأنظمة المعقدة من المنصات المتخصصة إلى أنظمة SaaS متعددة المستأجرين.",
+
+    // YouTube / Community Education
+    youtube_kicker: "Knowledge Sharing",
+    youtube_title: "المحتوى",
+    youtube_title_hl: "التعليمي والتقني",
+    youtube_desc:
+      "مشاركة المعرفة والخبرات العملية في هندسة برمجيات Laravel و Go وبناء الـ APIs المتقدمة.",
+    youtube_cta: "قناة YouTube قريباً",
+
+    // Launched Sites
     sites_kicker: "Live Ecosystem",
-    sites_title: "مواقع",
-    sites_title_hl: "تم إطلاقها",
-    sites_desc: "قائمة بالمواقع والتطبيقات التي عملت عليها وهي تعمل الآن.",
-    sites_search: "ابحث عن موقع...",
+    sites_title: "مواقع ومنصات",
+    sites_title_hl: "تم إطلاقها (+75)",
+    sites_desc:
+      "منظومة تضم أكثر من 75 موقعاً وتطبيقاً تم إطلاقها وتعمل بكفاءة في بيئات الإنتاج الحقيقية.",
+    sites_search: "ابحث عن نطاق أو موقع...",
     sites_all: "الكل",
-    sites_web: "مواقع",
-    sites_apps: "تطبيقات",
-    sites_count: "رابط",
+    sites_web: "مواقع ويب",
+    sites_apps: "تطبيقات موبايل",
+    sites_count: "رابط متاح",
     sites_show_more: "عرض المزيد",
     sites_show_less: "عرض أقل",
-    visit: "زيارة",
-    contact_title: "لديك فكرة",
-    contact_title_hl: "مشروع؟",
-    contact_desc: "يسعدني مناقشة متطلباتك وبناء نظام خلفي يناسب نمو مشروعك.",
-    contact_github: "تابعني على GitHub",
-    contact_mail: "راسلني",
-    contact_whatsapp: "تواصل عبر واتساب",
+    visit: "زيارة الموقع",
+
+    // Contact & Footer
+    contact_kicker: "Get In Touch",
+    contact_title: "هل لديك فكرة أو",
+    contact_title_hl: "مشروع جديد؟",
+    contact_desc:
+      "جاهز لبناء وهندسة منصتك من الصفر: من تصميم قواعد البيانات والـ APIs وحتى واجهات المستخدم والنشر النهائي.",
+    contact_whatsapp: "محادثة عبر واتساب",
+    contact_github: "حساب GitHub",
+    contact_linkedin: "حساب LinkedIn",
+    contact_mail: "البريد الإلكتروني",
     rights: "جميع الحقوق محفوظة.",
-    toggle_theme: "تبديل المظهر",
+    toggle_theme: "تبديل المظهر (Dark / Light)",
+    toggle_lang: "تبديل اللغة",
   },
+
   en: {
+    // Navigation
     nav_about: "About",
     nav_skills: "Skills",
     nav_architecture: "Architecture",
     nav_projects: "Projects",
-    nav_sites: "Websites",
+    nav_timeline: "Journey",
+    nav_sites: "Sites",
     nav_contact: "Contact",
-    hero_badge: "Available for new projects",
-    hero_name: "Abdalrhman AbdoAlhade",
-    hero_role: "Back-End Developer",
-    hero_desc:
-      "I build secure, scalable APIs with PHP (Laravel) and Go, manage complex databases and integrate external services for SaaS and e-commerce platforms.",
-    hero_cta1: "View projects",
-    hero_cta2: "My GitHub",
-    stat_projects: "Projects delivered",
-    stat_years: "Years experience",
-    stat_commit: "On-time delivery",
+
+    // Hero
+    hero_badge: "Open for New Projects & Contracts",
+    hero_name: SITE_CONFIG.name.en,
+    hero_role: SITE_CONFIG.role.en,
+    hero_desc: SITE_CONFIG.tagline.en,
+    hero_cta_projects: "Explore Projects",
+    hero_cta_whatsapp: "Direct WhatsApp",
+    hero_cta_github: "GitHub Profile",
+
+    // Stats
+    stat_projects: "Projects Delivered",
+    stat_years: "Years Experience",
+    stat_commit: "On-time Delivery",
+    stat_requests: "Monthly Requests Handled",
+
+    // Terminal
+    terminal_title: "abdalrhman@fullstack:~$",
+    terminal_status: "Production Node Connected — Ready",
+
+    // About
+    about_kicker: "About Me",
     about_title: "About",
-    about_title_hl: "me",
-    about_desc:
-      "A back-end developer focused on clean, maintainable architecture: multi-tenant systems, fine-grained role permissions, full order and operation lifecycles, reporting and dashboards. I work on e-commerce, delivery, education and e-invoicing platforms integrated with official requirements.",
+    about_title_hl: "Me",
+    about_desc: SITE_CONFIG.bio.en,
+
+    // Skills
+    skills_kicker: "Tech Stack",
     skills_title: "Technical",
-    skills_title_hl: "skills",
-    skill_php: "PHP / Laravel",
-    skill_php_d: "REST APIs, queues, multi-tenant SaaS",
-    skill_go: "Golang",
-    skill_go_d: "High-performance concurrent services",
-    skill_db: "Databases",
-    skill_db_d: "MySQL / PostgreSQL / Redis, query tuning",
-    skill_sec: "Security",
-    skill_sec_d: "JWT, granular permissions, data protection",
-    skill_ops: "Infra & deployment",
-    skill_ops_d: "Docker, CI/CD, monitoring and performance",
-    skill_int: "Integrations",
-    skill_int_d: "Payments, ZATCA, notifications, maps and SMS",
-    arch_kicker: "System Design",
-    arch_title: "Technical architecture",
-    arch_title_hl: "& structural design",
-    arch_desc:
-      "Designing and building advanced software systems for data isolation, high availability, and security across live projects (BillPro SA, Lawyers SaaS, Souqna, UMQ).",
-    arch_pillar_tenant: "Multi-tenant architecture",
-    arch_pillar_tenant_d:
-      "Content and data isolation with per-merchant/firm subdomains — fully independent environments within one cloud platform.",
-    arch_pillar_rbac: "Permissions & RBAC (5 roles)",
-    arch_pillar_rbac_d:
-      "Strict access control across five roles with Sanctum token validation on every API request in under a minute.",
-    arch_pillar_api: "Mobile REST APIs",
-    arch_pillar_api_d:
-      "Production-ready back-ends for QuickCart, UMQ, FAZ, and Souqna with Firebase, GPS, and digital wallets.",
-    arch_pillar_payouts: "Accounting & payouts",
-    arch_pillar_payouts_d:
-      "Double-entry ledger, chart of accounts, auto-balanced journal entries, commission calculation, and payout requests.",
-    arch_arsenal_title: "Technical",
-    arch_arsenal_hl: "arsenal & skills",
-    arch_arsenal_desc:
-      "Programming languages, frameworks, databases, and infrastructure tools for back-end development.",
-    arch_skills_languages: "Programming languages",
+    skills_title_hl: "Arsenal",
+    skills_desc:
+      "Full-Stack engineering combining the resilience of modern backends with reactive, high-performance UIs.",
+    arch_skills_frontend: "Frontend Development",
+    arch_skills_languages: "Programming Languages",
     arch_skills_frameworks: "Frameworks & APIs",
-    arch_skills_databases: "Databases",
-    arch_skills_devops: "Infrastructure & architecture",
-    arch_integrations: "External service integrations",
+    arch_skills_databases: "Databases & Caching",
+    arch_skills_devops: "DevOps & Cloud Architecture",
+
+    // Architecture
+    arch_kicker: "System Design & Architecture",
+    arch_title: "Technical Architecture",
+    arch_title_hl: "& Structural Design",
+    arch_desc:
+      "Engineering robust distributed systems ensuring strict tenant isolation, high availability, and compliance across production platforms.",
+    arch_copy_snippet: "Copy Snippet",
+    arch_copied: "Copied!",
+    arch_pillar_tenant: "Multi-Tenant Architecture",
+    arch_pillar_tenant_d:
+      "Strict data and database isolation with automatic subdomain switching per tenant, fully compliant with regulatory e-invoicing standards.",
+    arch_pillar_rbac: "Granular RBAC (5 Distinct Roles)",
+    arch_pillar_rbac_d:
+      "Role-based access control safeguarding sensitive domain endpoints with token validation and policy gates.",
+    arch_pillar_api: "High-Throughput Mobile & Web REST APIs",
+    arch_pillar_api_d:
+      "Production-grade APIs serving web and mobile clients with Firebase push notifications, live geolocation, and digital wallets.",
+    arch_pillar_payouts: "Double-Entry Ledger & Payouts Engine",
+    arch_pillar_payouts_d:
+      "Automated journal entries ensuring debit equals credit, merchant commission calculation, and secure batch payouts.",
+    arch_arsenal_title: "Proficiency",
+    arch_arsenal_hl: "Breakdown & Metrics",
+    arch_arsenal_desc:
+      "Real-world engineering proficiency proven across high-demand production deployments.",
+    arch_integrations: "External Integrations",
     arch_integrations_d:
-      "Integration by service type — not tied to a single provider, scalable to any gateway or vendor.",
-    int_payment: "Electronic payments",
-    int_shipping: "Shipping & delivery",
-    int_sms: "SMS messaging",
-    int_notifications: "Push notifications",
-    int_maps: "Maps & GPS",
-    int_einvoicing: "E-invoicing",
-    int_api: "External API integration",
+      "Proven production integrations with enterprise gateways, couriers, and official services.",
+    int_payment: "Payment Gateways (EdfaPay / Mada)",
+    int_shipping: "Couriers (Aramex / SMSA / Naqel)",
+    int_sms: "SMS Gateways & OTP Verification",
+    int_notifications: "Instant Push (Firebase FCM)",
+    int_maps: "Maps & Geolocation (Google Maps)",
+    int_einvoicing: "ZATCA Phase 2 E-Invoicing",
+    int_api: "Third-Party APIs & Webhooks",
+
+    // Roles
     role_admin: "Admin",
     role_staff: "Staff",
     role_client: "Client",
     role_lawyer: "Lawyer",
     role_law_firm: "Law Firm",
-    projects_kicker: "Portfolio",
-    projects_title: "Latest",
-    projects_title_hl: "projects",
-    projects_desc: "Web platforms and mobile apps powered by robust, scalable back-ends.",
-    projects_show_more: "Show more",
-    projects_show_less: "Show less",
-    all: "All",
-    live_preview: "Live preview",
-    code: "Code",
-    load_error: "Could not load projects right now.",
-    retry: "Try again",
+
+    // Projects
+    projects_kicker: "Portfolio & Case Studies",
+    projects_title: "Featured",
+    projects_title_hl: "Projects & Platforms",
+    projects_desc:
+      "Production platforms and mobile backends delivered with rigorous testing and modern architecture.",
+    projects_search: "Search projects, technologies (Laravel, ZATCA, RBAC)...",
+    projects_filter_all: "All",
+    projects_filter_web: "Web SaaS",
+    projects_filter_mobile: "Mobile",
+    projects_sort_newest: "Newest",
+    projects_sort_oldest: "Oldest",
+    projects_sort_title: "Alphabetical",
+    projects_featured: "Featured Platforms",
+    projects_all_list: "All Engineered Projects",
+    projects_show_more: "Show More Projects",
+    projects_show_less: "Show Less",
+    projects_no_results: "No projects match your filter criteria.",
+    projects_clear_filters: "Clear Filters",
+    project_modal_details: "Project Deep Dive",
+    project_modal_tech: "Tech Stack:",
+    project_modal_prev: "Previous",
+    project_modal_next: "Next",
+    project_modal_close: "Close",
+    live_preview: "Live Platform",
+    google_play: "Google Play",
+    code: "Source Code",
+    details: "Details",
+    load_error: "Unable to load live projects from server.",
+    retry: "Try Again",
+
+    // Timeline / Work Journey
+    timeline_kicker: "Work Journey & Milestones",
+    timeline_title: "Engineering",
+    timeline_title_hl: "Journey & Milestones",
+    timeline_desc:
+      "Chronological milestones showing progressive architectural growth from custom apps to multi-tenant cloud ecosystems.",
+
+    // YouTube / Community Education
+    youtube_kicker: "Knowledge Sharing",
+    youtube_title: "Technical",
+    youtube_title_hl: "Educational Content",
+    youtube_desc:
+      "Sharing practical software engineering expertise in Laravel, Go, and scalable API design.",
+    youtube_cta: "YouTube Channel (Coming Soon)",
+
+    // Launched Sites
     sites_kicker: "Live Ecosystem",
     sites_title: "Launched",
-    sites_title_hl: "websites",
-    sites_desc: "Websites and apps I worked on that are live today.",
-    sites_search: "Search a website...",
+    sites_title_hl: "Platforms (+75)",
+    sites_desc:
+      "A portfolio of over 75 active production websites, platforms, and mobile apps deployed across the globe.",
+    sites_search: "Search domain or title...",
     sites_all: "All",
     sites_web: "Websites",
-    sites_apps: "Apps",
-    sites_count: "links",
-    sites_show_more: "Show more",
-    sites_show_less: "Show less",
-    visit: "Visit",
-    contact_title: "Got a project",
-    contact_title_hl: "in mind?",
+    sites_apps: "Mobile Apps",
+    sites_count: "live links",
+    sites_show_more: "Show More",
+    sites_show_less: "Show Less",
+    visit: "Visit Link",
+
+    // Contact & Footer
+    contact_kicker: "Get In Touch",
+    contact_title: "Have an ambitious",
+    contact_title_hl: "project in mind?",
     contact_desc:
-      "Happy to discuss your requirements and build a back-end that scales with you.",
-    contact_github: "Follow me on GitHub",
-    contact_mail: "Email me",
+      "Ready to engineer your platform end-to-end: from database architecture and secure APIs to modern responsive UI and deployment.",
     contact_whatsapp: "Chat on WhatsApp",
+    contact_github: "GitHub Profile",
+    contact_linkedin: "LinkedIn Profile",
+    contact_mail: "Send Email",
     rights: "All rights reserved.",
-    toggle_theme: "Toggle theme",
+    toggle_theme: "Toggle Theme (Dark / Light)",
+    toggle_lang: "Switch Language",
   },
 } as const;
 
 export type TKey = keyof (typeof dict)["ar"];
 
-type Ctx = {
+type AppContextType = {
   lang: Lang;
   theme: Theme;
   dir: "rtl" | "ltr";
@@ -237,39 +344,43 @@ type Ctx = {
   toggleTheme: () => void;
 };
 
-const AppCtx = createContext<Ctx | null>(null);
+const AppCtx = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>("ar");
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
-    const storedLang = localStorage.getItem("lang") as Lang | null;
-    const storedTheme = localStorage.getItem("theme") as Theme | null;
-    if (storedLang) setLang(storedLang);
-    if (storedTheme) setTheme(storedTheme);
+    if (typeof window === "undefined") return;
+    const storedLang = localStorage.getItem("portfolio_lang") as Lang | null;
+    const storedTheme = localStorage.getItem("portfolio_theme") as Theme | null;
+    if (storedLang === "ar" || storedLang === "en") setLang(storedLang);
+    if (storedTheme === "dark" || storedTheme === "light") setTheme(storedTheme);
+    else setTheme("dark"); // Default dark
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const root = document.documentElement;
     root.classList.toggle("dark", theme === "dark");
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("portfolio_theme", theme);
   }, [theme]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const root = document.documentElement;
     root.lang = lang;
     root.dir = lang === "ar" ? "rtl" : "ltr";
-    localStorage.setItem("lang", lang);
+    localStorage.setItem("portfolio_lang", lang);
   }, [lang]);
 
-  const value: Ctx = {
+  const value: AppContextType = {
     lang,
     theme,
     dir: lang === "ar" ? "rtl" : "ltr",
-    t: (key) => dict[lang][key],
-    toggleLang: () => setLang((l) => (l === "ar" ? "en" : "ar")),
-    toggleTheme: () => setTheme((t) => (t === "dark" ? "light" : "dark")),
+    t: (key: TKey) => (dict[lang] as Record<string, string>)[key] ?? key,
+    toggleLang: () => setLang((prev) => (prev === "ar" ? "en" : "ar")),
+    toggleTheme: () => setTheme((prev) => (prev === "dark" ? "light" : "dark")),
   };
 
   return <AppCtx.Provider value={value}>{children}</AppCtx.Provider>;

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://abdalrhman-abdo-alhade.vercel.app/sitemap.xml
