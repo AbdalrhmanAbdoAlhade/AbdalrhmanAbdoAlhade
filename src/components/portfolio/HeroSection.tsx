@@ -200,7 +200,7 @@ export function HeroSection() {
               {/* Floating Badges with Subtle Motion */}
               <div className="absolute -top-3 -start-2 sm:-start-4 animate-float rounded-xl border border-purple-500/40 bg-[#0E131A]/90 px-3 py-1.5 shadow-xl backdrop-blur-md">
                 <span className="font-mono text-xs font-black text-purple-400">
-                  PHP 8.3 · Laravel 12
+                  PHP · Laravel 
                 </span>
               </div>
 
