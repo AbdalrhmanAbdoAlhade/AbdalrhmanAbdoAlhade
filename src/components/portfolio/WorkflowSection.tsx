@@ -14,19 +14,22 @@ export function WorkflowSection() {
   const isAr = lang === "ar";
 
   return (
-    <section id="workflow" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
+    <section
+      id="workflow"
+      className="mx-auto max-w-6xl border-t border-border/60 px-4 py-12 sm:px-6 sm:py-20 lg:py-24"
+    >
       {/* Header */}
-      <div className="mb-12 text-center sm:mb-16">
-        <p className="text-xs font-bold uppercase tracking-widest text-emerald-400 sm:text-sm">
+      <div className="mb-8 text-center sm:mb-14">
+        <p className="text-xs font-bold tracking-wide text-emerald-600 dark:text-emerald-400 sm:text-sm">
           {isAr ? "منهجية العمل الهندسية" : "Engineering Methodology"}
         </p>
-        <h2 className="mt-2 text-2xl font-black sm:text-4xl md:text-5xl">
+        <h2 className="mt-2 text-2xl font-black text-balance sm:text-4xl md:text-5xl">
           {isAr ? "كيف أقوم ببناء" : "How I Build"}{" "}
-          <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent">
             {isAr ? "الأنظمة والمنصات؟" : "Production Platforms"}
           </span>
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-xs text-muted-foreground sm:text-sm md:text-base">
+        <p className="mx-auto mt-3 max-w-2xl text-xs leading-relaxed text-muted-foreground sm:text-sm md:text-base">
           {isAr
             ? "دورة حياة هندسية واضحة من الاستكشاف والتحليل وحتى المعمارية والبناء والنشر المستقر."
             : "A disciplined 4-stage engineering lifecycle from requirements discovery to resilient cloud deployment."}
@@ -34,27 +37,26 @@ export function WorkflowSection() {
       </div>
 
       {/* 4 Steps Grid */}
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {WORKFLOW_STEPS.map((stepItem, idx) => {
+      <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+        {WORKFLOW_STEPS.map((stepItem) => {
           const Icon = stepIcons[stepItem.icon as keyof typeof stepIcons] ?? Compass;
 
           return (
             <div
               key={stepItem.step}
-              className="group relative flex flex-col justify-between rounded-3xl border border-border/70 bg-secondary/30 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/40 hover:bg-secondary/50"
+              className="group relative flex flex-col justify-between rounded-2xl border border-border bg-card/85 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/40 sm:rounded-3xl sm:p-6"
             >
               <div>
-                {/* Step Number Badge */}
-                <div className="flex items-center justify-between border-b border-border/40 pb-4">
-                  <span className="font-mono text-3xl font-black text-emerald-400/80">
+                <div className="flex items-center justify-between border-b border-border pb-3.5">
+                  <span className="font-mono text-2xl font-black tabular-nums text-emerald-600 dark:text-emerald-400 sm:text-3xl">
                     {stepItem.step}
                   </span>
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20">
-                    <Icon className="h-5 w-5" />
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 sm:h-10 sm:w-10 sm:rounded-2xl">
+                    <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                   </div>
                 </div>
 
-                <h3 className="mt-4 text-base font-bold text-foreground">
+                <h3 className="mt-3.5 text-base font-bold text-foreground">
                   {isAr ? stepItem.titleAr : stepItem.titleEn}
                 </h3>
 
@@ -63,15 +65,14 @@ export function WorkflowSection() {
                 </p>
               </div>
 
-              {/* Deliverables */}
-              <div className="mt-6 border-t border-border/30 pt-4">
-                <span className="font-mono text-[11px] font-bold text-emerald-400 block mb-2">
+              <div className="mt-4 border-t border-border/60 pt-3.5 sm:mt-6 sm:pt-4">
+                <span className="mb-2 block text-[11px] font-bold text-emerald-600 dark:text-emerald-400">
                   {isAr ? "المخرجات الرئيسية:" : "Key Deliverables:"}
                 </span>
-                <ul className="space-y-1.5 text-xs text-foreground/80">
+                <ul className="space-y-1.5 text-xs text-foreground/85">
                   {(isAr ? stepItem.deliverablesAr : stepItem.deliverablesEn).map((d) => (
                     <li key={d} className="flex items-start gap-1.5">
-                      <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                      <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500 dark:text-emerald-400" />
                       <span>{d}</span>
                     </li>
                   ))}

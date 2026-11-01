@@ -116,7 +116,7 @@ export const skillGroups: {
   {
     titleKey: "arch_skills_frontend",
     skills: [
-      { name: "React 19 & Next.js", pct: 95 },
+      { name: "React & Next.js", pct: 95 },
       { name: "TypeScript & Strict Typing", pct: 94 },
       { name: "Tailwind CSS & Shadcn UI", pct: 96 },
       { name: "TanStack Router & Start", pct: 92 },
@@ -126,7 +126,7 @@ export const skillGroups: {
   {
     titleKey: "arch_skills_languages",
     skills: [
-      { name: "PHP 8.3 & Modern Features", pct: 98 },
+      { name: "PHP & Modern Features", pct: 98 },
       { name: "Go (Golang) Microservices", pct: 90 },
       { name: "SQL & Query Tuning", pct: 95 },
       { name: "Bash & Linux Shell", pct: 88 },
@@ -135,7 +135,7 @@ export const skillGroups: {
   {
     titleKey: "arch_skills_frameworks",
     skills: [
-      { name: "Laravel 12 / 11 Ecosystem", pct: 98 },
+      { name: "Laravel Ecosystem", pct: 98 },
       { name: "RESTful API & RPC Design", pct: 96 },
       { name: "Node.js & Express / Fastify", pct: 88 },
       { name: "Laravel Sanctum, Passport, JWT", pct: 95 },

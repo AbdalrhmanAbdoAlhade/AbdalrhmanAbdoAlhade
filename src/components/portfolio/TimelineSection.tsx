@@ -25,7 +25,7 @@ const MILESTONES: Milestone[] = [
     descriptionEn:
       "Architecting enterprise-scale platforms including BillPro SA and Lawyers SaaS ERP. Implemented complete tenant isolation, double-entry balanced ledger engines, automated payout calculations, and ZATCA Phase 2 compliance.",
     projects: ["BillPro SA", "Lawyers SaaS ERP", "Jewelry Souqna SA", "Asas Al-Jawhara"],
-    tech: ["Laravel 12", "Go", "Multi-Tenancy", "ZATCA", "RBAC", "Docker"],
+    tech: ["Laravel", "Go", "Multi-Tenancy", "ZATCA", "RBAC", "Docker"],
   },
   {
     year: "2025",
@@ -51,7 +51,7 @@ const MILESTONES: Milestone[] = [
     descriptionEn:
       "Designed and launched scalable digital platforms including AST Oman, Khayrat donation logistics app, and Al-Bawaba. Focused on SQL query optimization, robust caching layers, and external payment/shipping integrations.",
     projects: ["AST Oman", "Khayrat App", "Al-Bawaba"],
-    tech: ["PHP 8", "MySQL", "PostgreSQL", "Redis", "REST APIs"],
+    tech: ["PHP", "MySQL", "PostgreSQL", "Redis", "REST APIs"],
   },
 ];
 

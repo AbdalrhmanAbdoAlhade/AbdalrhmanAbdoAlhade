@@ -1,22 +1,15 @@
 import { useState } from "react";
 import {
   ArrowRight,
-  Bell,
   Building2,
   Check,
   Copy,
-  CreditCard,
   Database,
-  FileText,
   Globe,
-  Link2,
-  MapPin,
-  MessageSquare,
   Plug,
   Server,
   ShieldCheck,
   Smartphone,
-  Truck,
   Wallet,
 } from "lucide-react";
 import { useApp } from "@/lib/app-context";
@@ -41,14 +34,15 @@ function CodeSnippet({ code, language }: { code: string; language: string }) {
   return (
     <div
       dir="ltr"
-      className="relative mt-4 overflow-hidden rounded-2xl border border-border/70 bg-[#090D14] text-start font-mono text-xs shadow-inner"
+      className="relative mt-4 overflow-hidden rounded-xl border border-slate-800 bg-[#090D14] text-left font-mono text-[11px] shadow-inner sm:rounded-2xl sm:text-xs"
     >
-      <div className="flex items-center justify-between border-b border-border/40 bg-[#0E141D] px-3.5 py-2 text-[11px] text-muted-foreground">
+      <div className="flex items-center justify-between border-b border-slate-800/80 bg-[#0E141D] px-3.5 py-2 text-[11px] text-slate-400">
         <span className="font-mono font-bold text-emerald-400">{language.toUpperCase()}</span>
         <button
+          type="button"
           onClick={handleCopy}
           aria-label="Copy code snippet"
-          className="flex items-center gap-1 rounded-md px-2 py-0.5 transition-colors hover:bg-secondary hover:text-emerald-400"
+          className="flex items-center gap-1 rounded-md px-2 py-0.5 transition-colors hover:bg-slate-800 hover:text-emerald-400 whitespace-nowrap"
         >
           {copied ? (
             <>
@@ -63,7 +57,7 @@ function CodeSnippet({ code, language }: { code: string; language: string }) {
           )}
         </button>
       </div>
-      <pre className="overflow-x-auto p-4 leading-relaxed text-slate-300">
+      <pre className="overflow-x-auto p-3.5 leading-relaxed text-slate-200 sm:p-4">
         <code>{code}</code>
       </pre>
     </div>
@@ -75,171 +69,184 @@ export function ArchitectureSection() {
   const isAr = lang === "ar";
 
   return (
-    <section id="architecture" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:py-24">
+    <section
+      id="architecture"
+      className="mx-auto max-w-6xl border-t border-border/60 px-4 py-12 sm:px-6 sm:py-20 lg:py-24"
+    >
       {/* Header */}
-      <div className="mb-10 text-center sm:mb-14">
-        <p className="text-xs font-bold uppercase tracking-widest text-emerald-400 sm:text-sm">
+      <div className="mb-8 text-center sm:mb-12">
+        <p className="text-xs font-bold tracking-wide text-emerald-600 dark:text-emerald-400 sm:text-sm">
           {isAr ? "الهندسة المعمارية وتصميم الأنظمة" : "System Design & Architecture"}
         </p>
-        <h2 className="mt-2 text-2xl font-black sm:text-4xl md:text-5xl">
+        <h2 className="mt-2 text-2xl font-black text-balance sm:text-4xl md:text-5xl">
           {isAr ? "المعمارية التقنية" : "Technical"}{" "}
-          <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 dark:from-emerald-400 dark:to-cyan-400 bg-clip-text text-transparent">
             {isAr ? "والتصميم الهيكلي" : "Architecture"}
           </span>
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-xs text-muted-foreground sm:text-sm md:text-base">
+        <p className="mx-auto mt-3 max-w-2xl text-xs leading-relaxed text-muted-foreground sm:text-sm md:text-base">
           {isAr
             ? "تصميم وبناء أنظمة برمجية متقدمة تضمن عزل البيانات، التوافرية العالية، والأمان الصارم عبر المشاريع الحية (BillPro SA, Lawyers SaaS, Souqna, UMQ)."
             : "Engineering scalable distributed architectures guaranteeing strict tenant isolation, zero-trust RBAC, and high availability in production."}
         </p>
       </div>
 
-      {/* Request Flow Diagram (SVG) */}
-      <div className="mb-10 overflow-hidden rounded-3xl border border-border/70 bg-[#090D13] p-5 shadow-2xl sm:p-8">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between border-b border-border/40 pb-4">
+      {/* Multi-Tenant Request Lifecycle Diagram (Compact horizontal rows on mobile, horizontal pipeline on md+) */}
+      <div className="mb-8 overflow-hidden rounded-2xl border border-border bg-card p-4 shadow-sm sm:mb-10 sm:rounded-3xl sm:p-7">
+        <div className="flex flex-col gap-1.5 border-b border-border pb-3.5 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-2">
-            <Server className="h-5 w-5 text-emerald-400" />
-            <h3 className="text-base font-bold text-foreground">
+            <Server className="h-4 w-4 shrink-0 text-emerald-500 dark:text-emerald-400 sm:h-5 sm:w-5" />
+            <h3 className="text-sm font-bold text-foreground sm:text-base">
               {isAr
                 ? "مخطط تدفق الطلب في بيئة Multi-Tenant"
                 : "Multi-Tenant Request Lifecycle Flow"}
             </h3>
           </div>
-          <span className="font-mono text-xs text-emerald-400">
-            Subdomain → Resolver → Isolated DB → Scope Response
+          <span dir="ltr" className="font-mono text-[11px] text-emerald-600 dark:text-emerald-400">
+            Subdomain → Resolver → Isolated DB → Response
           </span>
         </div>
 
-        {/* Responsive Flow Diagram */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 md:flex-row md:gap-2">
-          {/* Step 1: Request */}
-          <div className="flex w-full flex-col items-center rounded-2xl border border-border/70 bg-secondary/30 p-4 text-center md:w-56">
-            <Globe className="h-6 w-6 text-cyan-400" />
-            <span className="mt-2 font-mono text-xs font-bold text-foreground">
-              https://tenant-a.domain.com
-            </span>
-            <span className="mt-1 text-[11px] text-muted-foreground">
-              {isAr ? "الطلب عبر النطاق الفرعي" : "Subdomain Ingress Request"}
-            </span>
+        <div className="mt-5 flex flex-col items-stretch justify-between gap-2.5 md:flex-row md:items-center md:gap-2">
+          {/* Step 1 */}
+          <div className="flex flex-1 items-center gap-3 rounded-xl border border-border bg-secondary/40 p-3.5 text-start md:flex-col md:text-center">
+            <Globe className="h-5 w-5 shrink-0 text-cyan-500 dark:text-cyan-400 md:h-6 md:w-6" />
+            <div className="min-w-0">
+              <div dir="ltr" className="truncate font-mono text-xs font-bold text-foreground">
+                tenant-a.domain.com
+              </div>
+              <div className="mt-0.5 text-[11px] text-muted-foreground">
+                {isAr ? "الطلب عبر النطاق الفرعي" : "Subdomain Ingress Request"}
+              </div>
+            </div>
           </div>
 
-          <ArrowRight className="h-5 w-5 text-emerald-400 shrink-0 rotate-90 md:rotate-0 rtl:md:rotate-180" />
+          <ArrowRight className="mx-auto h-4 w-4 shrink-0 rotate-90 text-emerald-500 dark:text-emerald-400 md:mx-0 md:rotate-0 rtl:md:rotate-180" />
 
-          {/* Step 2: Resolver */}
-          <div className="flex w-full flex-col items-center rounded-2xl border border-border/70 bg-secondary/30 p-4 text-center md:w-56">
-            <Building2 className="h-6 w-6 text-emerald-400" />
-            <span className="mt-2 font-mono text-xs font-bold text-foreground">
-              Tenant Middleware
-            </span>
-            <span className="mt-1 text-[11px] text-muted-foreground">
-              {isAr ? "التحقق وتحديد الشركة" : "Resolve Scope & Bind Tenant"}
-            </span>
+          {/* Step 2 */}
+          <div className="flex flex-1 items-center gap-3 rounded-xl border border-border bg-secondary/40 p-3.5 text-start md:flex-col md:text-center">
+            <Building2 className="h-5 w-5 shrink-0 text-emerald-500 dark:text-emerald-400 md:h-6 md:w-6" />
+            <div className="min-w-0">
+              <div dir="ltr" className="font-mono text-xs font-bold text-foreground">
+                Tenant Middleware
+              </div>
+              <div className="mt-0.5 text-[11px] text-muted-foreground">
+                {isAr ? "التحقق وتحديد الشركة" : "Resolve Scope & Bind Tenant"}
+              </div>
+            </div>
           </div>
 
-          <ArrowRight className="h-5 w-5 text-emerald-400 shrink-0 rotate-90 md:rotate-0 rtl:md:rotate-180" />
+          <ArrowRight className="mx-auto h-4 w-4 shrink-0 rotate-90 text-emerald-500 dark:text-emerald-400 md:mx-0 md:rotate-0 rtl:md:rotate-180" />
 
-          {/* Step 3: Isolated Database */}
-          <div className="flex w-full flex-col items-center rounded-2xl border border-emerald-500/40 bg-emerald-500/10 p-4 text-center md:w-56">
-            <Database className="h-6 w-6 text-emerald-400" />
-            <span className="mt-2 font-mono text-xs font-bold text-emerald-300">
-              DB_TENANT_A (Isolated)
-            </span>
-            <span className="mt-1 text-[11px] text-muted-foreground">
-              {isAr ? "عزل كامل للبيانات والمحفظة" : "Isolated DB Schema & Ledger"}
-            </span>
+          {/* Step 3 */}
+          <div className="flex flex-1 items-center gap-3 rounded-xl border border-emerald-500/40 bg-emerald-500/10 p-3.5 text-start md:flex-col md:text-center">
+            <Database className="h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400 md:h-6 md:w-6" />
+            <div className="min-w-0">
+              <div
+                dir="ltr"
+                className="font-mono text-xs font-bold text-emerald-700 dark:text-emerald-300"
+              >
+                DB_TENANT_A
+              </div>
+              <div className="mt-0.5 text-[11px] text-muted-foreground">
+                {isAr ? "عزل كامل للبيانات والمحفظة" : "Isolated DB Schema & Ledger"}
+              </div>
+            </div>
           </div>
 
-          <ArrowRight className="h-5 w-5 text-emerald-400 shrink-0 rotate-90 md:rotate-0 rtl:md:rotate-180" />
+          <ArrowRight className="mx-auto h-4 w-4 shrink-0 rotate-90 text-emerald-500 dark:text-emerald-400 md:mx-0 md:rotate-0 rtl:md:rotate-180" />
 
-          {/* Step 4: Response */}
-          <div className="flex w-full flex-col items-center rounded-2xl border border-border/70 bg-secondary/30 p-4 text-center md:w-56">
-            <ShieldCheck className="h-6 w-6 text-teal-400" />
-            <span className="mt-2 font-mono text-xs font-bold text-foreground">
-              200 OK Response
-            </span>
-            <span className="mt-1 text-[11px] text-muted-foreground">
-              {isAr ? "استجابة آمنة متوافقة مع ZATCA" : "Secure ZATCA-compliant JSON"}
-            </span>
+          {/* Step 4 */}
+          <div className="flex flex-1 items-center gap-3 rounded-xl border border-border bg-secondary/40 p-3.5 text-start md:flex-col md:text-center">
+            <ShieldCheck className="h-5 w-5 shrink-0 text-teal-500 dark:text-teal-400 md:h-6 md:w-6" />
+            <div className="min-w-0">
+              <div dir="ltr" className="font-mono text-xs font-bold text-foreground">
+                200 OK Response
+              </div>
+              <div className="mt-0.5 text-[11px] text-muted-foreground">
+                {isAr ? "استجابة آمنة متوافقة مع ZATCA" : "Secure ZATCA-compliant JSON"}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Bento Grid Layout (4 Pillars) */}
-      <div className="grid gap-6 lg:grid-cols-2">
+      {/* 4 Architecture Pillars */}
+      <div className="grid gap-4 sm:gap-6 lg:grid-cols-2">
         {ARCHITECTURE_PILLARS.map((pillar) => {
           const Icon = iconMap[pillar.icon] ?? Building2;
 
           return (
             <article
               key={pillar.id}
-              className="flex flex-col justify-between rounded-3xl border border-border/70 bg-secondary/30 p-5 transition-all duration-300 hover:border-emerald-500/40 hover:bg-secondary/50 sm:p-7"
+              className="flex flex-col justify-between rounded-2xl border border-border bg-card/85 p-4 transition-colors hover:border-emerald-500/40 sm:rounded-3xl sm:p-6"
             >
               <div>
-                {/* Header */}
-                <div className="flex items-center justify-between border-b border-border/40 pb-3.5">
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/30">
-                      <Icon className="h-5 w-5" />
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border pb-3">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 sm:h-10 sm:w-10 sm:rounded-2xl">
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
                     </div>
-                    <h3 className="text-base font-bold text-foreground sm:text-lg">
+                    <h3 className="text-sm font-bold text-foreground sm:text-lg">
                       {isAr ? pillar.titleAr : pillar.titleEn}
                     </h3>
                   </div>
-                  <span className="rounded-full bg-secondary/80 px-2.5 py-0.5 font-mono text-[11px] font-bold text-emerald-400 border border-border/60">
+                  <span
+                    dir="ltr"
+                    className="font-mono text-[11px] font-bold text-emerald-600 dark:text-emerald-400"
+                  >
                     {pillar.tag}
                   </span>
                 </div>
 
-                {/* Description */}
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground sm:text-sm">
                   {isAr ? pillar.descAr : pillar.descEn}
                 </p>
 
-                {/* Role Badges for RBAC */}
                 {pillar.roles && (
-                  <div className="mt-3 flex flex-wrap gap-1.5">
-                    {pillar.roles.map((role) => (
-                      <span
-                        key={role}
-                        className="rounded-full border border-border bg-secondary/60 px-2.5 py-0.5 text-xs font-semibold text-foreground"
-                      >
-                        {role}
+                  <div
+                    dir="ltr"
+                    className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs font-semibold text-foreground/85"
+                  >
+                    {pillar.roles.map((role, idx) => (
+                      <span key={role} className="inline-flex items-center gap-2">
+                        {idx > 0 && <span className="text-muted-foreground/50">·</span>}
+                        <span>{role}</span>
                       </span>
                     ))}
                   </div>
                 )}
               </div>
 
-              {/* Code Snippet */}
               <CodeSnippet code={pillar.code} language={pillar.language} />
             </article>
           );
         })}
       </div>
 
-      {/* External Integrations */}
-      <div className="mt-10 rounded-3xl border border-border/70 bg-secondary/30 p-6 sm:mt-14 sm:p-8">
-        <div className="flex items-center gap-2.5 border-b border-border/40 pb-4">
-          <Plug className="h-5 w-5 text-emerald-400" />
-          <h3 className="text-base font-bold text-foreground sm:text-lg">
+      {/* Enterprise Integrations */}
+      <div className="mt-8 rounded-2xl border border-border bg-secondary/25 p-4 sm:mt-12 sm:rounded-3xl sm:p-7">
+        <div className="flex items-center gap-2.5 border-b border-border pb-3.5">
+          <Plug className="h-4 w-4 shrink-0 text-emerald-500 dark:text-emerald-400 sm:h-5 sm:w-5" />
+          <h3 className="text-sm font-bold text-foreground sm:text-lg">
             {isAr ? "التكاملات والربط مع الأنظمة الخارجية" : "Enterprise Integrations"}
           </h3>
         </div>
 
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-4 grid gap-2.5 sm:mt-5 sm:gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {INTEGRATIONS.map((item) => (
             <div
               key={item.nameAr}
-              className="flex items-center gap-3 rounded-2xl border border-border/60 bg-secondary/40 p-3.5 transition-colors hover:border-emerald-500/40 hover:bg-secondary/70"
+              className="flex items-center gap-3 rounded-xl border border-border bg-card/85 p-3 transition-colors hover:border-emerald-500/40 sm:rounded-2xl sm:p-3.5"
             >
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-400">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 sm:h-9 sm:w-9 sm:rounded-xl">
                 <Check className="h-4 w-4" />
               </span>
               <div className="min-w-0 flex-1">
                 <div className="truncate text-xs font-bold text-foreground">
                   {isAr ? item.nameAr : item.nameEn}
                 </div>
-                <div className="text-[11px] text-muted-foreground font-mono">
+                <div className="font-mono text-[11px] text-muted-foreground">
                   {isAr ? item.categoryAr : item.categoryEn}
                 </div>
               </div>

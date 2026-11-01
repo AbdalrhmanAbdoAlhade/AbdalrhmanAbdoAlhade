@@ -40,7 +40,7 @@ export const content = {
         {
           title: "لغات البرمجة",
           items: [
-            ["PHP 8.3", 98],
+            ["PHP", 98],
             ["Go (Golang)", 90],
             ["SQL", 95],
             ["Bash / Shell", 85],
@@ -49,7 +49,7 @@ export const content = {
         {
           title: "أطر العمل & APIs",
           items: [
-            ["Laravel 12", 98],
+            ["Laravel", 98],
             ["RESTful API Design", 96],
             ["Node.js & Express", 88],
             ["Sanctum & OAuth", 94],
@@ -73,7 +73,7 @@ export const content = {
             ["Monitoring & Performance", 85],
           ],
         },
-      ] as [string, number][][],
+      ] as { title: string; items: [string, number][] }[],
       integrationsTitle: "التكاملات الخارجية — أنظمة لا مزوّدين، قابلة للتوسع لأي بوابة",
       integrations: [
         "دفع إلكتروني",
@@ -178,7 +178,7 @@ export const content = {
         {
           title: "Languages",
           items: [
-            ["PHP 8.3", 98],
+            ["PHP", 98],
             ["Go (Golang)", 90],
             ["SQL", 95],
             ["Bash / Shell", 85],
@@ -187,7 +187,7 @@ export const content = {
         {
           title: "Frameworks & APIs",
           items: [
-            ["Laravel 12", 98],
+            ["Laravel", 98],
             ["RESTful API Design", 96],
             ["Node.js & Express", 88],
             ["Sanctum & OAuth", 94],
@@ -211,7 +211,7 @@ export const content = {
             ["Monitoring & Performance", 85],
           ],
         },
-      ] as [string, number][][],
+      ] as { title: string; items: [string, number][] }[],
       integrationsTitle: "External integrations — systems, not vendors, extensible to any gateway",
       integrations: [
         "Electronic payments",
