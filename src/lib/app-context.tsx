@@ -106,7 +106,7 @@ export const dict = {
     projects_sort_oldest: "الأقدم",
     projects_sort_title: "أبجدياً",
     projects_featured: "منصات مميزة (Featured)",
-    projects_all_list: "باقي المشاريع والأنظمة",
+    projects_all_list: "المشاريع والأنظمة",
     projects_show_more: "عرض المزيد من المشاريع",
     projects_show_less: "عرض أقل",
     projects_no_results: "لم يتم العثور على مشاريع مطابقة للبحث.",

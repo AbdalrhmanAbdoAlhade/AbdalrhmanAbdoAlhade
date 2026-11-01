@@ -33,7 +33,6 @@ export function ProjectModal({
     setImgError(false);
   }, [project?.id]);
 
-  // Lock background scroll on mobile & handle keyboard navigation
   useEffect(() => {
     if (!project) return;
     const prevOverflow = document.body.style.overflow;
@@ -93,12 +92,15 @@ export function ProjectModal({
         className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity"
       />
 
-      {/* Modal Sheet Container (Bottom sheet on mobile, centered dialog on desktop) */}
+      {/* Modal Bottom Sheet Container */}
       <div className="relative z-10 flex max-h-[90dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-3xl border border-border bg-card text-card-foreground shadow-2xl sm:rounded-3xl">
-        {/* Top Bar */}
-        <div className="flex items-center justify-between border-b border-border bg-secondary/40 px-4 py-3 sm:px-5 sm:py-3.5">
-          <div className="flex items-center gap-2 min-w-0">
-            <span className="text-lg shrink-0">{project.icon}</span>
+        {/* Mobile Drag Handle Affordance */}
+        <div className="mx-auto mt-2.5 h-1.5 w-10 shrink-0 rounded-full bg-muted-foreground/30 sm:hidden" />
+
+        {/* Top Bar (40px+ Touch Targets) */}
+        <div className="flex items-center justify-between border-b border-border bg-secondary/30 px-4 py-2.5 sm:px-5 sm:py-3.5">
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="shrink-0 text-lg">{project.icon}</span>
             <span
               dir="ltr"
               className="truncate font-mono text-xs font-bold text-emerald-600 dark:text-emerald-400"
@@ -107,13 +109,13 @@ export function ProjectModal({
             </span>
           </div>
 
-          <div className="flex items-center gap-1.5 shrink-0">
+          <div className="flex shrink-0 items-center gap-1.5">
             <button
               type="button"
               onClick={() => handleNavigate(-1)}
               disabled={!prevProject}
               aria-label={t("project_modal_prev")}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border transition-colors hover:bg-secondary disabled:opacity-30"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors active:scale-95 hover:bg-secondary disabled:opacity-30"
             >
               <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
             </button>
@@ -122,7 +124,7 @@ export function ProjectModal({
               onClick={() => handleNavigate(1)}
               disabled={!nextProject}
               aria-label={t("project_modal_next")}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border transition-colors hover:bg-secondary disabled:opacity-30"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border transition-colors active:scale-95 hover:bg-secondary disabled:opacity-30"
             >
               <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </button>
@@ -130,7 +132,7 @@ export function ProjectModal({
               type="button"
               onClick={onClose}
               aria-label={t("project_modal_close")}
-              className="ms-1 flex h-9 w-9 items-center justify-center rounded-full border border-border bg-secondary text-foreground transition-colors hover:bg-secondary/80"
+              className="ms-1 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-secondary text-foreground transition-colors active:scale-95 hover:bg-secondary/80"
             >
               <X className="h-4 w-4" />
             </button>
@@ -153,8 +155,8 @@ export function ProjectModal({
               <div
                 className={`flex h-full w-full flex-col items-center justify-center bg-gradient-to-br ${project.placeholderBg} p-6 text-center`}
               >
-                <span className="text-5xl">{project.icon}</span>
-                <span className="mt-3 font-mono text-base font-bold text-slate-200 sm:text-lg">
+                <span className="text-4xl sm:text-5xl">{project.icon}</span>
+                <span className="mt-2 font-mono text-sm font-bold text-slate-200 sm:mt-3 sm:text-lg">
                   {project.title}
                 </span>
                 <span className="mt-1 text-xs text-emerald-300">
@@ -170,7 +172,7 @@ export function ProjectModal({
               {project.title}
             </h2>
 
-            <div className="mt-2.5 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
               {durationStr && (
                 <span className="flex items-center gap-1.5">
                   <Clock className="h-3.5 w-3.5 text-emerald-500 dark:text-emerald-400" />
@@ -193,7 +195,7 @@ export function ProjectModal({
 
           {/* Tech Stack */}
           {project.techStack.length > 0 && (
-            <div className="mt-4 border-t border-border pt-4">
+            <div className="mt-4 border-t border-border pt-3.5">
               <h4 className="text-xs font-bold text-muted-foreground">{t("project_modal_tech")}</h4>
               <div
                 dir="ltr"
@@ -210,24 +212,24 @@ export function ProjectModal({
           )}
 
           {/* Description */}
-          <div className="mt-4 border-t border-border pt-4">
+          <div className="mt-4 border-t border-border pt-3.5">
             <h4 className="text-xs font-bold text-muted-foreground">
               {t("project_modal_details")}
             </h4>
-            <div className="mt-2.5 whitespace-pre-line text-xs leading-relaxed text-foreground/90 sm:text-sm">
+            <div className="mt-2 whitespace-pre-line text-xs leading-relaxed text-foreground/90 sm:text-sm">
               {project.fullDescriptionFormatted || project.description}
             </div>
           </div>
         </div>
 
-        {/* Sticky Bottom Action Bar for Easy Thumb Reach on Mobile */}
-        <div className="flex flex-wrap items-center gap-2.5 border-t border-border bg-secondary/30 px-4 py-3 sm:px-6 sm:py-4">
+        {/* Sticky Bottom Action Bar with Safe-Area Padding */}
+        <div className="flex flex-wrap items-center gap-2 border-t border-border bg-secondary/30 px-4 pt-3 pb-[max(0.85rem,env(safe-area-inset-bottom))] sm:gap-2.5 sm:px-6 sm:py-4">
           {project.liveLink && (
             <a
               href={project.liveLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-emerald-950 transition-colors hover:bg-emerald-400 whitespace-nowrap sm:flex-initial sm:rounded-full sm:text-sm"
+              className="inline-flex min-h-[46px] flex-1 items-center justify-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-bold text-emerald-950 transition-colors active:scale-[0.98] hover:bg-emerald-400 whitespace-nowrap sm:flex-initial sm:rounded-full sm:text-sm"
             >
               {project.isGooglePlay ? (
                 <>
@@ -249,7 +251,7 @@ export function ProjectModal({
               href={project.githubLink}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-border bg-secondary px-4 py-2.5 text-xs font-bold text-foreground transition-colors hover:border-emerald-500/40 whitespace-nowrap sm:rounded-full sm:text-sm"
+              className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-border bg-secondary px-4 py-2.5 text-xs font-bold text-foreground transition-colors active:scale-[0.98] hover:border-emerald-500/40 whitespace-nowrap sm:rounded-full sm:text-sm"
             >
               <Github className="h-4 w-4" />
               <span>{t("code")}</span>
@@ -259,7 +261,7 @@ export function ProjectModal({
           <button
             type="button"
             onClick={onClose}
-            className="ms-auto inline-flex min-h-[44px] items-center justify-center rounded-xl border border-border px-4 py-2.5 text-xs font-bold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground whitespace-nowrap sm:rounded-full"
+            className="ms-auto inline-flex min-h-[46px] items-center justify-center rounded-xl border border-border px-4 py-2.5 text-xs font-bold text-muted-foreground transition-colors active:scale-[0.98] hover:bg-secondary hover:text-foreground whitespace-nowrap sm:rounded-full"
           >
             {t("project_modal_close")}
           </button>

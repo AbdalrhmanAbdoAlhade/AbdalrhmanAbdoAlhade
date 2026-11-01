@@ -49,15 +49,21 @@ export function Navbar() {
 
   useEffect(() => {
     if (!mobileMenuOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileMenuOpen(false);
     };
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-xl">
       {/* Reading Progress Bar */}
       <div
         className="absolute top-0 start-0 h-[2px] bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-400 transition-transform duration-150"
@@ -68,12 +74,12 @@ export function Navbar() {
         aria-valuemax={100}
       />
 
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:h-16 sm:gap-8 sm:px-6">
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 px-3.5 sm:h-16 sm:gap-8 sm:px-6">
         {/* Zone 1: Brand Wordmark */}
         <a
           href="#top"
           dir="ltr"
-          className="font-mono text-base font-extrabold tracking-tight text-foreground whitespace-nowrap shrink-0 sm:text-lg"
+          className="font-mono text-[15px] font-extrabold tracking-tight text-foreground whitespace-nowrap shrink-0 sm:text-lg"
         >
           Abdalrhman<span className="text-emerald-500 dark:text-emerald-400">.dev</span>
         </a>
@@ -98,14 +104,14 @@ export function Navbar() {
           })}
         </nav>
 
-        {/* Zone 3: Controls */}
+        {/* Zone 3: Controls (40px+ Touch Targets on Mobile) */}
         <div className="flex items-center gap-1.5 shrink-0 sm:gap-2">
           {/* Theme Toggle */}
           <button
             type="button"
             onClick={toggleTheme}
             aria-label={t("toggle_theme")}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-secondary/50 text-foreground transition-colors hover:border-emerald-500/40 hover:bg-secondary sm:h-10 sm:w-10"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/50 text-foreground transition-colors active:scale-95 hover:border-emerald-500/40 hover:bg-secondary"
           >
             {theme === "dark" ? (
               <Sun className="h-4 w-4 text-emerald-400" />
@@ -119,9 +125,9 @@ export function Navbar() {
             type="button"
             onClick={toggleLang}
             aria-label={t("toggle_lang")}
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-2.5 text-xs font-bold text-foreground transition-colors hover:border-emerald-500/40 hover:bg-secondary whitespace-nowrap shrink-0 sm:h-10 sm:px-3"
+            className="inline-flex h-10 items-center gap-1.5 rounded-xl border border-border bg-secondary/50 px-2.5 text-xs font-bold text-foreground transition-colors active:scale-95 hover:border-emerald-500/40 hover:bg-secondary whitespace-nowrap shrink-0 sm:px-3"
           >
-            <Globe className="h-3.5 w-3.5 text-emerald-500 dark:text-emerald-400" />
+            <Globe className="h-3.5 w-3.5 text-emerald-500 dark:text-emerald-400 shrink-0" />
             <span>{lang === "ar" ? "EN" : "عربي"}</span>
           </button>
 
@@ -131,7 +137,7 @@ export function Navbar() {
             target="_blank"
             rel="noreferrer"
             dir="ltr"
-            className="hidden h-10 items-center gap-2 rounded-lg bg-emerald-500 px-3.5 text-xs font-bold text-emerald-950 transition-colors hover:bg-emerald-400 whitespace-nowrap shrink-0 md:inline-flex"
+            className="hidden h-10 items-center gap-2 rounded-xl bg-emerald-500 px-3.5 text-xs font-bold text-emerald-950 transition-colors hover:bg-emerald-400 whitespace-nowrap shrink-0 md:inline-flex"
           >
             <Github className="h-4 w-4" />
             <span>GitHub</span>
@@ -143,7 +149,7 @@ export function Navbar() {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileMenuOpen}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-secondary/50 text-foreground transition-colors hover:bg-secondary lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-secondary/50 text-foreground transition-colors active:scale-95 hover:bg-secondary lg:hidden"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -155,10 +161,10 @@ export function Navbar() {
         <>
           <div
             onClick={() => setMobileMenuOpen(false)}
-            className="fixed inset-0 top-14 z-40 bg-black/50 backdrop-blur-xs lg:hidden"
+            className="fixed inset-0 top-14 z-40 bg-black/60 backdrop-blur-xs lg:hidden"
           />
-          <div className="relative z-50 border-b border-border bg-card px-4 py-4 shadow-2xl lg:hidden">
-            <div className="grid grid-cols-2 gap-1.5">
+          <div className="fixed inset-x-0 top-14 z-50 max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-b border-border bg-card px-4 py-4 shadow-2xl lg:hidden">
+            <div className="grid grid-cols-2 gap-2">
               {navItems.map((item) => {
                 const isActive = activeSection === item.href.slice(1);
                 return (
@@ -166,10 +172,10 @@ export function Navbar() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className={`flex min-h-[44px] items-center rounded-xl px-3.5 py-2.5 text-sm font-semibold transition-colors ${
+                    className={`flex min-h-[46px] items-center rounded-xl border px-3.5 py-2.5 text-sm font-semibold transition-colors active:scale-[0.98] ${
                       isActive
-                        ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold"
-                        : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                        ? "border-emerald-500/40 bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 font-bold"
+                        : "border-border/60 bg-secondary/30 text-foreground/85 hover:bg-secondary hover:text-foreground"
                     }`}
                   >
                     {t(item.label)}
@@ -178,13 +184,13 @@ export function Navbar() {
               })}
             </div>
 
-            <div className="mt-3 grid grid-cols-2 gap-2 border-t border-border pt-3">
+            <div className="mt-3.5 grid grid-cols-2 gap-2.5 border-t border-border pt-3.5">
               <a
                 href={PROFILE.links.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex min-h-[44px] items-center justify-center gap-2 rounded-xl bg-[#25D366] px-3 py-2.5 text-xs font-bold text-white"
+                className="flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#25D366] px-3 py-2.5 text-xs font-bold text-white active:scale-[0.98]"
               >
                 <MessageSquareCode className="h-4 w-4 shrink-0" />
                 <span className="whitespace-nowrap">
@@ -197,10 +203,10 @@ export function Navbar() {
                 rel="noreferrer"
                 dir="ltr"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex min-h-[44px] items-center justify-center gap-2 rounded-xl border border-border bg-secondary/70 px-3 py-2.5 text-xs font-bold text-foreground"
+                className="flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-border bg-secondary/70 px-3 py-2.5 text-xs font-bold text-foreground active:scale-[0.98]"
               >
                 <Github className="h-4 w-4 shrink-0" />
-                <span className="whitespace-nowrap">GitHub Profile</span>
+                <span className="whitespace-nowrap">GitHub</span>
               </a>
             </div>
           </div>

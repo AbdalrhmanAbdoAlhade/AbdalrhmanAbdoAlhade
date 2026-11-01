@@ -87,16 +87,18 @@
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
   }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-display);
     -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
   section[id] {
-    scroll-margin-top: 4.5rem;
+    scroll-margin-top: 4rem;
   }
   ::selection {
     background: color-mix(in oklab, var(--primary) 35%, transparent);
